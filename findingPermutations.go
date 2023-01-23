@@ -38,6 +38,4 @@ func main() {
 	for _, e := range answer {
 		fmt.Println(e)
 	}
-	//fmt.Println(answer)
-	//fmt.Println(answer)
 }
