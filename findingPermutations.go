@@ -29,21 +29,17 @@ func findPermutation(start []int, depth int, permutations *([][]int)) {
 }
 
 func findPermutation2(start []int, depth int, permutations *([][]int)) {
-
 	if depth == len(start)-1 {
 		return
 	} else {
-
 		for i := depth; i < len(start); i++ {
 			permutation := start
 			permutation[depth], permutation[i] = permutation[i], permutation[depth]
-
 			if i != depth {
 				*permutations = append(*permutations, permutation)
 			}
 			findPermutation(permutation, (depth + 1), permutations)
 		}
-
 	}
 }
 
