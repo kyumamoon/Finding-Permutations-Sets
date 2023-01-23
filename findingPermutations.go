@@ -10,20 +10,16 @@ func findPermutation(start []int, depth int, permutations *([][]int)) {
 		return
 	} else {
 
-		fmt.Println(start, "DEPTH:", depth)
-		if depth == 0 {
-			*permutations = append(*permutations, start)
-
-			findPermutation(start, (depth + 1), permutations)
-		}
-
-		for i := depth + 1; i < len(start); i++ {
+		for i := depth; i < len(start); i++ {
 			permutation := make([]int, len(start))
 			copy(permutation, start)
 			permutation[depth], permutation[i] = permutation[i], permutation[depth]
 
 			permutationsStorage = append(permutationsStorage, permutation)
-			*permutations = append(*permutations, permutation)
+			if i != depth {
+				*permutations = append(*permutations, permutation)
+			}
+
 		}
 
 		for _, e := range permutationsStorage {
@@ -33,11 +29,15 @@ func findPermutation(start []int, depth int, permutations *([][]int)) {
 }
 
 func main() {
-	x := []int{1, 2, 3}
-	answer := [][]int{}
+	x := []int{1, 2, 3, 4, 5}
+	answer := [][]int{x}
 	findPermutation(x, 0, &answer)
 
 	fmt.Println("PERMUTATIONS:", len(answer))
-	fmt.Println(answer)
+
+	for _, e := range answer {
+		fmt.Println(e)
+	}
+	//fmt.Println(answer)
 	//fmt.Println(answer)
 }
